@@ -1,4 +1,4 @@
-package service.parser.Impl;
+package service.parser.impl;
 
 import exception.ParserExeption;
 import service.parser.ParserConnector;

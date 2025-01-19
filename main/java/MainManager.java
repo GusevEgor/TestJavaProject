@@ -2,9 +2,9 @@ import service.computer.Computer;
 import service.computer.ComputerImpl;
 import dto.AllDataDto;
 import service.parser.ParserManager;
-import service.parser.Impl.ParserManagerImpl;
+import service.parser.impl.ParserManagerImpl;
 import service.writer.WriterManager;
-import service.writer.Impl.WriterManagerImpl;
+import service.writer.impl.WriterManagerImpl;
 
 import java.util.logging.Logger;
 

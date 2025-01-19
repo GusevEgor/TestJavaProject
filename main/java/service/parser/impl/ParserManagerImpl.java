@@ -1,4 +1,4 @@
-package service.parser.Impl;
+package service.parser.impl;
 
 import dto.AllDataDto;
 import service.parser.ParserConnector;

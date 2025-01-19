@@ -1,4 +1,4 @@
-package service.writer.Impl;
+package service.writer.impl;
 
 import exception.WriterException;
 import service.writer.DirectoryManager;
