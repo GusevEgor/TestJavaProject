@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 public class ParserManagerImpl implements ParserManager {
 
-    private final Logger logger = Logger.getLogger(ParserManagerImpl.class.getName());
     private final Map<String, String> urlsMap = new HashMap<>();
 
     public ParserManagerImpl() {
