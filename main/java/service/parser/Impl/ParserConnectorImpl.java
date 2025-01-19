@@ -1,0 +1,29 @@
+package service.parser.Impl;
+
+import exception.ParserExeption;
+import service.parser.ParserConnector;
+import org.jsoup.nodes.Document;
+import org.jsoup.Jsoup;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+
+
+public class ParserConnectorImpl implements ParserConnector {
+
+    private final Logger logger = Logger.getLogger(ParserConnectorImpl.class.getName());
+
+
+    @Override
+    public Document getDocument(String url) {
+        try {
+            return Jsoup.connect(url)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+                    .get();
+        } catch (IOException e) {
+            logger.severe("Error while getting document");
+            throw new ParserExeption(e.getMessage());
+        }
+    }
+}
