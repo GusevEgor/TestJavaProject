@@ -23,6 +23,7 @@ public class DirectoryManagerImpl implements DirectoryManager {
         if (!Files.exists(path)) {
             try {
                 Files.createFile(path);
+                logger.info("File " + path + " was created");
             } catch (Exception e) {
                 logger.severe("Error while creating file");
                 throw new WriterException(e.getMessage());

@@ -1,6 +1,7 @@
 package service.parser.impl;
 
 import exception.ParserExeption;
+import org.jsoup.Connection;
 import service.parser.ParserConnector;
 import org.jsoup.nodes.Document;
 import org.jsoup.Jsoup;
@@ -16,14 +17,24 @@ public class ParserConnectorImpl implements ParserConnector {
 
     @Override
     public Document getDocument(String url) {
+        Document document;
+        Connection connection;
         try {
-            return Jsoup.connect(url)
+            connection = Jsoup.connect(url)
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-                            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
-                    .get();
-        } catch (IOException e) {
-            logger.severe("Error while getting document");
+                            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36");
+
+        } catch (NullPointerException e) {
+            logger.severe("Error connection" + e.getMessage());
             throw new ParserExeption(e.getMessage());
         }
+
+        try {
+            document = connection.get();
+        } catch (IOException e) {
+            logger.severe("Error while getting document" + e.getMessage());
+            throw new ParserExeption(e.getMessage());
+        }
+        return document;
     }
 }

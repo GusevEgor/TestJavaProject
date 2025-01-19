@@ -7,6 +7,7 @@ public class DataDto {
     private String content;
 
 
+
     public DataDto(String topic, String title, Integer countVotes, String content) {
         this.topic = topic;
         this.title = title;

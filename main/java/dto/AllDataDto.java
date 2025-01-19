@@ -6,6 +6,10 @@ import java.util.Map;
 public class AllDataDto {
     private Map<String, List<DataDto>> data; // <topic, <title, content>>
 
+    public AllDataDto() {
+        this.data = null;
+    }
+
     public AllDataDto(Map<String, List<DataDto>> data) {
         this.data = data;
     }

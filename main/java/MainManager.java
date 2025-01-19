@@ -1,3 +1,6 @@
+import exception.ComputerException;
+import exception.ParserExeption;
+import exception.WriterException;
 import service.computer.Computer;
 import service.computer.ComputerImpl;
 import dto.AllDataDto;
@@ -19,14 +22,28 @@ public class MainManager {
         Computer computer = new ComputerImpl();
         WriterManager writerManager = new WriterManagerImpl();
 
+        AllDataDto allDataDto = new AllDataDto();
+
         logger.info("Start parsing");
-        AllDataDto allDataDto = parserManager.start();
+        try {
+            allDataDto = parserManager.start();
+        } catch (ParserExeption e) {
+            logger.severe("Error while parsing" + e.getMessage());
+        }
 
         logger.info("Start processing");
-        AllDataDto allDataDtoAfterProcessing = computer.compute(allDataDto);
+        try {
+            allDataDto = computer.compute(allDataDto);
+        } catch (ComputerException e) {
+            logger.severe("Error while processing" + e.getMessage());
+        }
 
         logger.info("Start writing");
-        writerManager.write(allDataDtoAfterProcessing);
+        try {
+            writerManager.write(allDataDto);
+        } catch (WriterException e) {
+            logger.severe("Error while writing" + e.getMessage());
+        }
 
         logger.info("End program");
 
