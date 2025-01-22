@@ -43,10 +43,13 @@ public class PreciseParserDataHandlerImpl implements PreciseParserDataHandler {
 
         try {
             Element mainElement = document.selectFirst(".tm-layout__container");
-            return mainElement.select(".tm-section-name__text").text();
+            String title = mainElement.select(".tm-section-name__text").text();
+            return !title.isEmpty() ? title : "Empty title";
+
         } catch (NullPointerException e) {
             logger.severe("Error while getting title");
             throw new ParserExeption(e.getMessage());
         }
     }
+
 }

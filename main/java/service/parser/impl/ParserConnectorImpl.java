@@ -18,6 +18,18 @@ public class ParserConnectorImpl implements ParserConnector {
     @Override
     public Document getDocument(String url) {
         Document document;
+        Connection connection = getConnection(url);
+
+        try {
+            document = connection.get();
+        } catch (IOException e) {
+            logger.severe("Error while getting document" + e.getMessage());
+            throw new ParserExeption(e.getMessage());
+        }
+        return document;
+    }
+
+    private Connection getConnection(String url) {
         Connection connection;
         try {
             connection = Jsoup.connect(url)
@@ -29,12 +41,6 @@ public class ParserConnectorImpl implements ParserConnector {
             throw new ParserExeption(e.getMessage());
         }
 
-        try {
-            document = connection.get();
-        } catch (IOException e) {
-            logger.severe("Error while getting document" + e.getMessage());
-            throw new ParserExeption(e.getMessage());
-        }
-        return document;
+        return connection;
     }
 }
